@@ -44,7 +44,28 @@
         var remainingLetters = randomCountries.length;
 
         // Game Loop
-        while (remainingLetters > 0) {
+        // while (remainingLetters > 0) {
+        //     // Show the player their progress  
+        //     alert(answerArray.join(" ")); //change this to show on the page******
+        //     // Take input from the player
+        //     var guess = prompt("Guess a letter, or click cancel to stop playing.");
+        //     if (guess === null) {
+        //         break; // to exit the loop - guess not valid
+        //     } else if (guess.length !== 1)
+        //         alert("Please enter a single Letter.");
+        //     else {
+        //          // Update answerArray and remainingLetters for every correct guess
+        //         for (var j = 0; j < randomCountries.length; j++) {
+        //             if (randomCountries[j] === guess) { //if condition is false we will loop again until the condition is met
+        //                 answerArray[j] = guess; // once true the answerArray will update with the correct guessed letter
+        //                 remainingLetters--;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // I think your while loop makes more sense than this for loop
+        for(var i =0 ; i < remainingLetters; i++ ) { 
             // Show the player their progress  
             alert(answerArray.join(" ")); //change this to show on the page******
             // Take input from the player
@@ -58,7 +79,7 @@
                 for (var j = 0; j < randomCountries.length; j++) {
                     if (randomCountries[j] === guess) { //if condition is false we will loop again until the condition is met
                         answerArray[j] = guess; // once true the answerArray will update with the correct guessed letter
-                        remainingLetters--;
+                        i--;
                     }
                 }
             }
