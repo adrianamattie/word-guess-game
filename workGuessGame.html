@@ -1,0 +1,71 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>Week 3 Day 2 - Loops</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Press any key to get started!</h1>
+            <div class="word"></div>
+            <div class="wins"></div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        //create variables 
+
+        var wins = 0;
+        
+
+        //create an array to hold my words for hangman
+        var countries = [
+            "australia", //index 0
+            "england", //index 1
+            "scotland", //index 2
+            "ireland", //index 3
+            "israel", //index 4
+            "aruba" //index 5
+        ];
+
+        //to randomly pick a country from the array
+        var randomCountries = countries[Math.floor(Math.random() * countries.length)];
+        console.log(randomCountries)
+
+        // what to display when each index is picked 
+        var answerArray = [];
+        for (var i = 0; i < randomCountries.length; i++) {
+            answerArray[i] = "_";
+        }
+        var remainingLetters = randomCountries.length;
+ 
+        // Game code goes here
+        while (remainingLetters > 0) {
+        // Show the player their progress  
+        alert(answerArray.join(" "));
+        // Take input from the player
+        var guess = prompt("Guess a letter, or click cancel to stop playing.");
+        if (guess === null) {
+            break; // to exit the loop - guess not valid
+        } else if (guess.length !== 1)
+            alert("Please enter a single Letter.");
+            else {
+                //Update the game with the guess
+            }
+        // Update answerArray and remainingLetters for every correct guess
+    }
+
+
+
+
+        function chooseCountry() {
+
+        }
+    </script>
+</body>
+
+</html>
