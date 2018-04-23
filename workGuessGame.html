@@ -68,7 +68,7 @@
            });
             // alert(answerArray.join(" ")); //change this to show on the page******
             // Take input from the player
-            var guess = prompt("Guess a letter, or click cancel to stop playing.");
+            var guess = keysPressed; //prompt("Guess a letter, or click cancel to stop playing.");
             //var guess = preGuess.toLowerCase();//so user can use capitals or lowercase letters
             if (guess === null) {
                 break; // to exit the loop - guess not valid
@@ -86,6 +86,9 @@
                 }
             
         }
+    
+//Create a for loop for the entire game that will also display the score 
+//The score will show the amount of times won. Maximum 5. 
 
     alert(answerArray.join(" ")); //Change to show on the page
     alert("Good Job! The Answer was " + word);
