@@ -10,9 +10,10 @@
     <div class="container">
         <div class="jumbotron">
             <h1>Press any key to get started!</h1>
-            <div class="word"></div>
-            <div class="wins"></div>
-        </div>
+            <h3>Guess the country I have visited: 🌎 </h3>
+            <div id="word"></div>
+            <div id="wins"></div>
+        <button type="button" class="btn btn-success">Restart</button>
     </div>
 
 
@@ -39,16 +40,36 @@
         // what to display when each index is picked 
         var answerArray = [];
         for (var i = 0; i < randomCountries.length; i++) {
-            answerArray[i] = "_";
+            answerArray[i] = "_"+" ";
+           
+            var newDiv = document.createElement("word");
+            newDiv.textContent = answerArray[i];
+            word.appendChild(newDiv);
+
+          // var getWord = document.getElementById("word") //this was my first attempt but creating a new div worked to get correct result
+         // getWord.textContent = (answerArray[i]); //why isn't this printing more "_" on the page??
         }
         var remainingLetters = randomCountries.length;
 
         // Game Loop
         while (remainingLetters > 0) {
             // Show the player their progress  
-            alert(answerArray.join(" ")); //change this to show on the page******
+           document.addEventListener("keyup", (event) => {
+            var keyName = event.key; 
+            
+            document.getElementsByClassName("newDiv")
+            newDiv.textContent = (keyName);
+           
+            //storing the keys that were pressed
+            var keysPressed = String.keyName; {
+                  
+            }
+            //    getWord.textContent = (answerArray.join.call(event.key));
+           });
+            // alert(answerArray.join(" ")); //change this to show on the page******
             // Take input from the player
             var guess = prompt("Guess a letter, or click cancel to stop playing.");
+            //var guess = preGuess.toLowerCase();//so user can use capitals or lowercase letters
             if (guess === null) {
                 break; // to exit the loop - guess not valid
             } else if (guess.length !== 1)
@@ -59,13 +80,15 @@
                     if (randomCountries[j] === guess) { //if condition is false we will loop again until the condition is met
                         answerArray[j] = guess; // once true the answerArray will update with the correct guessed letter
                         remainingLetters--;
+                    
                     }
                 }
-            }
+                }
+            
         }
 
-alert(answerArray.join(" ")); //Change to show on the page
-alert("Good Job! The Answer was " + word);
+    alert(answerArray.join(" ")); //Change to show on the page
+    alert("Good Job! The Answer was " + word);
         
     </script>
 </body>
