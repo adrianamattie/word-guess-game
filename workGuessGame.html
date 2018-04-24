@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Countries Hangman</title>
 
-    <html>
+
 
     <head>
         <title>Week 3 Day 2 - Loops</title>
@@ -17,11 +17,16 @@
     <body>
         <div class="container">
             <div class="jumbotron">
-                <h1>Press any key to get started!</h1>
-                <h3>Guess the country I have visited: 🌎 </h3>
-                <div id="word"></div>
-                <div id="wins"></div>
-                <button type="button" class="btn btn-success">Restart</button>
+                <row>
+                    <h1>Press any key to get started!</h1>
+                    <h3>Guess the country I have visited: 🌎 </h3>
+                    <div id="word"></div>
+                    <div id="wins"></div>
+                    <h3>Number of Guesses Remaining:</h3>
+                    <h3>Letters Already Guessed:</h3>
+                    <button type="button" class="btn btn-success">Restart</button>
+                </row>
+
             </div>
 
 
@@ -30,6 +35,7 @@
 
                 var wins = 0;
                 var word = document.getElementById("word");
+                var keysPressed = "";
 
                 //create an array to hold my words for hangman
                 var countries = [
@@ -57,8 +63,8 @@
                     newDiv.textContent = answerArray[i];
                     word.appendChild(newDiv);
 
-                    // var getWord = document.getElementById("word") //this was my first attempt but creating a new div worked to get correct result
-                    // getWord.textContent = (answerArray[i]); //why isn't this printing more "_" on the page??
+                    //  var getWord = word //this was my first attempt but creating a new div worked to get correct result
+                    //   getWord.textContent = (answerArray[i]); //why isn't this printing more "_" on the page??
                 }
                 var remainingLetters = randomCountries.length;
 
@@ -75,7 +81,7 @@
                         var keysPressed = String.keyName; {
 
 
-                            newDiv.textContent = (answerArray.join.call(keysPressed));
+                            newDiv.textContent = (answerArray.join(keysPressed));
                         }
                     });
                     // alert(answerArray.join(" ")); //change this to show on the page******
@@ -84,9 +90,9 @@
                     //var guess = preGuess.toLowerCase();//so user can use capitals or lowercase letters
                     if (guess === null) {
                         break; // to exit the loop - guess not valid
-                    } else if (guess.length !== 1) {
-                        alert("Please enter a single Letter.");
-                    } else {
+                    } //else if (guess.length !== 1) {
+                    // alert("Please enter a single Letter.");} 
+                    else {
                         // Update answerArray and remainingLetters for every correct guess
                         for (var j = 0; j < randomCountries.length; j++) {
                             if (randomCountries[j] === guess) { //if condition is false we will loop again until the condition is met
@@ -108,4 +114,4 @@
             </script>
     </body>
 
-    </html>
+</html>
