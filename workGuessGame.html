@@ -20,9 +20,9 @@
                 <row>
                     <h1>Press any key to get started!</h1>
                     <h3>Guess the country I have visited: 🌎 </h3>
-                    <div id="word"></div>
+                    <div id="secretWord"></div>
                     <div id="wins"></div>
-                    <h3>Number of Guesses Remaining:</h3>
+                    <h3 id="guessesRemaining">Number of Guesses Remaining:</h3>
                     <h3>Letters Already Guessed:</h3>
                     <button type="button" class="btn btn-success">Restart</button>
                 </row>
@@ -34,8 +34,9 @@
                 //create variables 
 
                 var wins = 0;
-                var word = document.getElementById("word");
+                var word = document.getElementById("secretWord");
                 var keysPressed = "";
+                var lives = document.getElementById("guessesRemaining");
 
                 //create an array to hold my words for hangman
                 var countries = [
@@ -48,25 +49,21 @@
                 ];
 
                 //to randomly pick a country from the array
-                var randomCountries = countries[Math.floor(Math.random() * countries.length)];
-                console.log(randomCountries);
+                var randomCountry = countries[Math.floor(Math.random() * countries.length)];
+                console.log(randomCountry);
 
                 // what to display when each index is picked 
                 var answerArray = [];
-                for (var i = 0; i < randomCountries.length; i++) {
-                    answerArray[i] = "_" + " ";
+                for (var i = 0; i < randomCountry.length; i++) {
+                    answerArray[i] = "_ ";
 
-
-
-
-                    var newDiv = document.createElement("word");
-                    newDiv.textContent = answerArray[i];
-                    word.appendChild(newDiv);
-
-                    //  var getWord = word //this was my first attempt but creating a new div worked to get correct result
-                    //   getWord.textContent = (answerArray[i]); //why isn't this printing more "_" on the page??
+                    var newSpan = document.createElement("span");
+                    newSpan.textContent = answerArray[i];
+                    newSpan.id = "countryLetter" + i; //creating unique ID for each span created
+                    word.appendChild(newSpan); // line 37 makes word point to the empty div #secretWord
                 }
-                var remainingLetters = randomCountries.length;
+
+                var remainingLetters = randomCountry.length;
 
                 // Game Loop
                 while (remainingLetters > 0) {
@@ -75,42 +72,40 @@
                         var keyName = event.key;
 
                         // document.getElementsByClassName("newDiv")
-                        newDiv.textContent = (keyName);
-
-                        //storing the keys that were pressed
-                        var keysPressed = String.keyName; {
-
-
-                            newDiv.textContent = (answerArray.join(keysPressed));
-                        }
-                    });
-                    // alert(answerArray.join(" ")); //change this to show on the page******
-                    // Take input from the player
-                    var guess = keysPressed; //prompt("Guess a letter, or click cancel to stop playing.");
-                    //var guess = preGuess.toLowerCase();//so user can use capitals or lowercase letters
-                    if (guess === null) {
-                        break; // to exit the loop - guess not valid
-                    } //else if (guess.length !== 1) {
-                    // alert("Please enter a single Letter.");} 
-                    else {
-                        // Update answerArray and remainingLetters for every correct guess
-                        for (var j = 0; j < randomCountries.length; j++) {
-                            if (randomCountries[j] === guess) { //if condition is false we will loop again until the condition is met
-                                answerArray[j] = guess; // once true the answerArray will update with the correct guessed letter
-                                remainingLetters--;
-
+                        for (var i = 0; i < randomCountry.length; i++) {
+                            if (keyName === randomCountry[i]) {
+                                var updatingLetter = document.getElementById("countryLetter" + i)
+                                concole.log(updatingLetter);
+                                updatingLetter.textContent = keyName;
+                            } 
+                            else {
+                                for (var lives = 8; lives > 0; lives--) {
+                                    if (keyName !== randomCountry[i]) {
+                                        var livesSpan = document.createElement("span");
+                                        liveSpan.textContent = lives;
+                                        guessesRemaining.appendChild(livesSpan);
+                                    }
+                                }
+                                //if the wrong letter is selected the lives variable will be reduced by 1
+                                //if the lives variable is 0 the player loses the game.
+                                //the player can reset the game by pushing the reset button. 
                             }
                         }
-                    }
+
+
+
+                    });
 
                 }
+
+                
 
                 //Create a for loop for the entire game that will also display the score 
                 //The score will show the amount of times won. Maximum 5. 
 
-                alert(answerArray.join(" ")); //Change to show on the page
-                alert("Good Job! The Answer was " + randomCountries);
-                console.log(randomCountries)
+               // alert(answerArray.join(" ")); //Change to show on the page
+               // alert("Good Job! The Answer was " + randomCountry);
+             //   console.log(randomCountry)
             </script>
     </body>
 
