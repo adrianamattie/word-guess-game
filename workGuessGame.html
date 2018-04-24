@@ -77,10 +77,10 @@
                                 var updatingLetter = document.getElementById("countryLetter" + i)
                                 concole.log(updatingLetter);
                                 updatingLetter.textContent = keyName;
-                            } 
-                            else {
-                                for (var lives = 8; lives > 0; lives--) {
-                                    if (keyName !== randomCountry[i]) {
+                            } else {
+
+                                if (keyName !== randomCountry[i]) {
+                                    for (var lives = 8; lives > 0; lives--) {
                                         var livesSpan = document.createElement("span");
                                         liveSpan.textContent = lives;
                                         guessesRemaining.appendChild(livesSpan);
@@ -98,14 +98,14 @@
 
                 }
 
-                
+
 
                 //Create a for loop for the entire game that will also display the score 
-                //The score will show the amount of times won. Maximum 5. 
+                //The score will show the amount of times won. Maximum 8. 
 
-               // alert(answerArray.join(" ")); //Change to show on the page
-               // alert("Good Job! The Answer was " + randomCountry);
-             //   console.log(randomCountry)
+                // alert(answerArray.join(" ")); //Change to show on the page
+                // alert("Good Job! The Answer was " + randomCountry);
+                //   console.log(randomCountry)
             </script>
     </body>
 
