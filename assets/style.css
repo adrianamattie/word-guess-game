@@ -10,7 +10,7 @@ body {
     justify-content: center;
     color: white;
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 100px;
+    font-size: 6em;
     padding-top: .7em;
     text-decoration: underline solid white;
 }
