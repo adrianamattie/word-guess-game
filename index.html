@@ -36,7 +36,7 @@
 
                     </div>
                     <div class="col-sm-6">
-                        <img id=hangman src="assets/sadman.jpg" alt="hangman">
+                        <img id="hangman" src="assets/sadman.jpg" alt="hangman">
                     </div>
                 </div>
 
@@ -47,16 +47,13 @@
                 //create variables 
                 var redactedWordEl = document.getElementById("secretWord");
                 var redactedWord = [];
-
                 var guessesEl = document.getElementById("guessesRemaining");
                 var guesses = '';
-
                 var userGuesses = 8;
-
                 document.getElementById("restartbtn").addEventListener("click", function (event) {
-                    restartGame();
+                    location.reload();
+                    startGame();
                     playGame();
-
                 });
                 //create an array to hold my words for hangman
                 var possibleAnswers = [
@@ -67,67 +64,69 @@
                     "israel", //index 4
                     "aruba" //index 5
                 ];
-
                 //to randomly pick a country from the array
                 //.split makes the string into an array and adding quotes in the smooth brackets removes the commons in the array
-
-
-
                 var answer = possibleAnswers[Math.floor(Math.random() * possibleAnswers.length)].split('');
-                //NOTE::Functions if do separate things should be separate
-                function restartGame() {
-                    var answer = possibleAnswers[Math.floor(Math.random() * possibleAnswers.length)].split('');
+                //NOTE::Functions that do separate things should be separate
+                    function youWon() {
+                        alert("you won");
+                    };
+                // Game Loop
+                function playGame() {
+                    //NOTE::Every time you add an event listener it adds that function so make sure you don't double up
+                    document.addEventListener("keypress", (event) => {
+                        var keyName = event.key;
+                        var goodGuess = false;
+                        for (var i = 0; i < answer.length; i++) {
+                            if (keyName === answer[i]) {
+                                redactedWord[i] = keyName;
+                                goodGuess = true;
+                            }
+                        }
+                        if (!goodGuess) {
+                            userGuesses--;
+                        }
+
+                        guessesEl.textContent = "Number of Guesses Remaining: " + userGuesses;
+                        if (userGuesses === 0) {
+                            alert("Sorry, you ran out of lives.");
+                            location.reload();
+                            // you lose code 
+                            // refresh game code
+                        }
+                        // console.log('redactedword', redactedWord)
+                        redactedWordEl.textContent = redactedWord.join('');
+                        // console.log(redactedWord);
+                        // console.log(answer);
+                       
+                        if (redactedWord.join('') == answer.join('')) {
+                            
+                            // alert("you won");
+                            setTimeout(youWon, 200);
+                            
+                            // location.reload();
+                            // restartGame()
+
+                        }
+
+                    });
+                }
+
+                function startGame() {
+                    answer = possibleAnswers[Math.floor(Math.random() * possibleAnswers.length)].split('');
                     console.log(answer);
-                    //NOTE: reset the array because if old word is longer then you will those characters left at the end
+                    //NOTE: reset the array because if old word is longer then you will have those characters left at the end
                     redactedWord = [];
                     // what to display when each index is picked 
                     for (var i = 0; i < answer.length; i++) {
                         redactedWord[i] = "_ ";
-                    }
-
+                    };
                     redactedWordEl.textContent = redactedWord.join("");
-                    console.log('1', redactedWord)
+                    console.log('1', redactedWord);
 
                 }
-                // Game Loop
-                function playGame() {
-
-                }
-
-                playGame()
-
-                //NOTE::Every time you add an event listent it adds that function so make sure you don't double up
-                document.addEventListener("keypress", (event) => {
-                    var keyName = event.key;
-                    var goodGuess = false;
-
-                    for (var i = 0; i < answer.length; i++) {
-                        if (keyName === answer[i]) {
-                            redactedWord[i] = keyName;
-                            goodGuess = true;
-                        }
-                    }
-                    if (!goodGuess) {
-                        userGuesses--;
-                    }
-
-                    guessesEl.textContent = "Number of Guesses Remaining: " + userGuesses;
-
-                    if (userGuesses === 0) {
-                        alert("Sorry, you ran out of lives.")
-                        // you lose code 
-                        // refresh game code
-
-                    }
-                    console.log('redactedword', redactedWord)
-                    redactedWordEl.textContent = redactedWord.join('');
-
-                    if (redactedWord === answer) { //cant make this work
-                        alert("You Won!")
-                        // restartGame()
-                    }
-                });
-                restartGame();
+                startGame();
+                playGame();
             </script>
     </body>
 
