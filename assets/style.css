@@ -32,8 +32,6 @@ body {
     opacity: 0.7;
 }
 
-
-
 #hangman {
     max-height: 100%;
     max-width: 100%;
@@ -42,4 +40,16 @@ body {
 .restartbtn {
     margin-top: 50px;
     padding: 1em;
+}
+
+@media screen and (max-width: 640px) {
+    #gameName {
+        font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #gameName {
+        font-size: 3em;
+    }
 }
